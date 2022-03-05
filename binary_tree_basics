@@ -1,0 +1,141 @@
+A tree whose elements have at most 2 children is called a binary tree.
+Since each element in a binary tree can have only 2 children, we typically name them the left and right child.
+
+
+A Binary Tree node contains following parts.
+
+    Data
+    Pointer to left child
+    Pointer to right child
+ Trees are hierarchical data structures.
+ The topmost node is called root of the tree. 
+ The elements that are directly under an element are called its children.
+ The element directly above something is called its parent.
+ For example, ‘a’ is a child of ‘f’, and ‘f’ is the parent of ‘a’. Finally, elements with no children are called leaves. 
+ Trees (with some ordering e.g., BST) provide moderate access/search (quicker than Linked List and slower than arrays).
+Trees provide moderate insertion/deletion (quicker than Arrays and slower than Unordered Linked Lists). 
+Like Linked Lists and unlike Arrays, Trees don’t have an upper limit on number of nodes as nodes are linked using pointers.
+
+
+First Simple Tree in C 
+Let us create a simple tree with 4 nodes in C. The created tree would be as following. 
+ 
+
+      tree
+      ----
+       1    <-- root
+     /   \
+    2     3  
+   /   
+  4
+  
+  
+  *c program*
+  
+  
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+	int data;
+	struct node* left;
+	struct node* right;
+};
+
+/* newNode() allocates a new node
+with the given data and NULL left
+and right pointers. */
+struct node* newNode(int data)
+{
+	// Allocate memory for new node
+	struct node* node
+		= (struct node*)malloc(sizeof(struct node));
+
+	// Assign data to this node
+	node->data = data;
+
+	// Initialize left and
+	// right children as NULL
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
+}
+
+int main()
+{
+	/*create root*/
+	struct node* root = newNode(1);
+	/* following is the tree after above statement
+		1
+		/ \
+	NULL NULL
+	*/
+
+	root->left = newNode(2);
+	root->right = newNode(3);
+	/* 2 and 3 become left and right children of 1
+			1
+		/ \
+		2	 3
+	/ \ / \
+NULL NULL NULL NULL
+	*/
+
+	root->left->left = newNode(4);
+	/* 4 becomes left child of 2
+			1
+		/ \
+		2	 3
+	/ \ / \
+	4 NULL NULL NULL
+	/ \
+NULL NULL
+	*/
+
+	getchar();
+	return 0;
+}
+
+
+
+*python program*
+
+
+
+# Python program to introduce Binary Tree
+
+# A class that represents an individual node in a
+# Binary Tree
+class Node:
+	def __init__(self,key):
+		self.left = None
+		self.right = None
+		self.val = key
+
+
+# create root
+root = Node(1)
+''' following is the tree after above statement
+		1
+	/ \
+	None None'''
+
+root.left	 = Node(2);
+root.right	 = Node(3);
+
+''' 2 and 3 become left and right children of 1
+		1
+		/ \
+		2	 3
+	/ \ / \
+None None None None'''
+
+
+root.left.left = Node(4);
+'''4 becomes left child of 2
+		1
+	/	 \
+	2		 3
+	/ \	 / \
+4 None None None
+/ \
+None None'''
